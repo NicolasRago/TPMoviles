@@ -1,67 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:layout_gravity="center">
+    android:gravity="center">
 
-    <LinearLayout
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:gravity="center">
+        android:layout_height="wrap_content"
+        android:text="@string/Parcial"
+        android:textAlignment="center"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        android:layout_margin="30dp"></TextView>
 
-        <TextView
-            android:id="@+id/Contador"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="0"
-            android:textSize="50sp"
-            android:layout_marginBottom="80dp"/>
+    <Button
+        android:id="@+id/enunciado1"
+        android:text="@string/Enunciado_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        ></Button>
+    <Button
+        android:id="@+id/enunciado2"
+        android:text="@string/Enunciado_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        ></Button>
+    <Button
+        android:id="@+id/enunciado3"
+        android:text="@string/Enunciado_3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        ></Button>
+    <Button
+        android:id="@+id/enunciado4"
+        android:text="@string/Enunciado_4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        ></Button>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/BStop"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="stop"
-                tools:layout_editor_absoluteX="95dp"
-                tools:layout_editor_absoluteY="366dp" />
-
-            <Button
-                android:id="@+id/BStart"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Start"
-                tools:layout_editor_absoluteX="95dp"
-                tools:layout_editor_absoluteY="247dp" />
-
-            <Button
-                android:id="@+id/BRestart"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="restart"
-                tools:layout_editor_absoluteX="111dp"
-                tools:layout_editor_absoluteY="479dp" />
-        </LinearLayout>
-
-        <EditText
-            android:id="@+id/Sleep"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Sleep"
-            android:text="1000"
-            android:textAlignment="center"
-            android:inputType="number" />
-
-    </LinearLayout>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

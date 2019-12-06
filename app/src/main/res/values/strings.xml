@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">TPMoviles</string>
+    <string name="Enunciado_1">Enunciado 1</string>
+    <string name="Enunciado_2">Enunciado 2</string>
+    <string name="Enunciado_3">Enunciado 3</string>
+    <string name="Enunciado_4">Enunciado 4</string>
+    <string name="Parcial">Parcial 2019 \nRago Nicolás, Marcial Mosse</string>
+
 </resources>
