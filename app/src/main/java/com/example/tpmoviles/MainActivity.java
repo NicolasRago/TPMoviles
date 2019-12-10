@@ -19,8 +19,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        enunciado1 = findViewById(R.id.enunciado1);
+        enunciado2 = findViewById(R.id.enunciado2);
         enunciado3 = findViewById(R.id.enunciado3);
         enunciado4 = findViewById(R.id.enunciado4);
+        enunciado1.setOnClickListener(this);
+        enunciado2.setOnClickListener(this);
         enunciado3.setOnClickListener(this);
         enunciado4.setOnClickListener(this);
     }
@@ -29,12 +33,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         Intent intent;
         switch (v.getId()){
+            case R.id.enunciado1:
+                intent = new Intent (MainActivity.this, Enunciado1Activity.class);
+                startActivity(intent);
+                break;
+            case R.id.enunciado2:
+                intent = new Intent (MainActivity.this, Enunciado2Activity.class);
+                startActivity(intent);
+                break;
             case R.id.enunciado3:
-                intent= new Intent (MainActivity.this, Enunciado3Activity.class);
+                intent = new Intent (MainActivity.this, Enunciado3Activity.class);
                 startActivity(intent);
                 break;
             case R.id.enunciado4:
-                intent= new Intent (MainActivity.this, Enunciado4Activity.class);
+                intent = new Intent (MainActivity.this, Enunciado4Activity.class);
                 startActivity(intent);
                 break;
             default:
