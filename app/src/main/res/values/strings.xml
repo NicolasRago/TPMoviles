@@ -7,5 +7,6 @@
     <string name="Parcial">Parcial 2019 \nRago Nicolás, Marcial Mosse</string>
     <string name="button_increment">Increment</string>
     <string name="button_restart">Restart</string>
-
+    <string name="service_name">Service</string>
+    <string name="IntentService_name">IntentService</string>
 </resources>
