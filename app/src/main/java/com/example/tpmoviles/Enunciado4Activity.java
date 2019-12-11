@@ -25,7 +25,7 @@ public class Enunciado4Activity extends AppCompatActivity implements View.OnClic
     TextView iterationIntentServiceTextView;
     TextView numRandomTextView;
 
-    private static final int NUM_ITER = 3;
+    private static final int NUM_ITER = 4;
 
     IntentFilter mIntentFilter;
 
