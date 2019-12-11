@@ -8,7 +8,10 @@ import android.util.Log;
 import androidx.annotation.Nullable;
 
 public class BroadcastService extends Service {
-    private int num_iter;
+
+    public static final String ACTION_ITERATION = "Iteracion_Service";
+    public static final String ACTION_FIN_ITERATION = "Fin_Iteracion_Service";
+
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
@@ -18,20 +21,22 @@ public class BroadcastService extends Service {
     @Override
     public int onStartCommand(final Intent intent, int flags, int startId) {
         Log.i(null, "In onStartCommand");
-        num_iter = intent.getIntExtra("num_iter",0);
-        new Thread(new Runnable() {
-            public void run() {
-                try {
-                    Thread.sleep(3000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                Intent broadcastIntent = new Intent();
-                broadcastIntent.setAction(Enunciado4Activity.mBroadcastServiceAction);
-                broadcastIntent.putExtra("num_iter", num_iter);
-                sendBroadcast(broadcastIntent);
+        int num_iter = intent.getIntExtra("iteraciones",0);
+
+        for (int i =0 ; i < num_iter; i++) {
+            try {
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
-        }).start();
+            Intent broadcastIntent = new Intent();
+            broadcastIntent.setAction(ACTION_ITERATION);
+            broadcastIntent.putExtra("iteracion", i);
+            sendBroadcast(broadcastIntent);
+        }
+        Intent broadcastIntent = new Intent();
+        broadcastIntent.setAction(ACTION_FIN_ITERATION);
+        sendBroadcast(broadcastIntent);
         return START_REDELIVER_INTENT;
     }
 }

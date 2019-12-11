@@ -9,4 +9,5 @@
     <string name="button_restart">Restart</string>
     <string name="service_name">Service</string>
     <string name="IntentService_name">IntentService</string>
+    <string name="BoundService_name">BoundService</string>
 </resources>

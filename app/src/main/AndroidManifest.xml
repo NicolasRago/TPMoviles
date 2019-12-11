@@ -20,6 +20,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".Enunciado3Activity" />
+        <activity android:name=".Enunciado4Activity" />
+        <service android:name=".BroadcastService"></service>
+        <service android:name=".BroadcastIntentService"></service>
+        <service android:name=".BoundService"></service>
     </application>
 
 </manifest>
