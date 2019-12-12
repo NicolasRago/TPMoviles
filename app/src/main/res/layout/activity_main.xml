@@ -4,37 +4,42 @@
     android:layout_height="match_parent"
     android:gravity="center">
 
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@mipmap/logo_unicen"></ImageView>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="10dp"
         android:text="@string/Parcial"
         android:textAlignment="center"
+        android:textColor="#000000"
         android:textSize="25dp"
-        android:textStyle="bold"
-        android:layout_margin="30dp"></TextView>
+        android:textStyle="bold"></TextView>
 
     <Button
         android:id="@+id/enunciado1"
         android:text="@string/Enunciado_1"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         ></Button>
     <Button
         android:id="@+id/enunciado2"
         android:text="@string/Enunciado_2"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         ></Button>
     <Button
         android:id="@+id/enunciado3"
         android:text="@string/Enunciado_3"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         ></Button>
     <Button
         android:id="@+id/enunciado4"
         android:text="@string/Enunciado_4"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         ></Button>
 

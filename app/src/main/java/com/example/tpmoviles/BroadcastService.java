@@ -2,41 +2,71 @@ package com.example.tpmoviles;
 
 import android.app.Service;
 import android.content.Intent;
+import android.os.Handler;
+import android.os.HandlerThread;
 import android.os.IBinder;
+import android.os.Looper;
+import android.os.Message;
 import android.util.Log;
-
-import androidx.annotation.Nullable;
+import android.widget.Toast;
 
 public class BroadcastService extends Service {
 
     public static final String ACTION_ITERATION = "Iteracion_Service";
-    public static final String ACTION_FIN_ITERATION = "Fin_Iteracion_Service";
+    private final static String TAG = BroadcastService.class.getCanonicalName();
 
-    @Nullable
+    private Looper mServiceLooper;
+    private ServiceHandler mServiceHandler;
+
     @Override
     public IBinder onBind(Intent intent) {
         return null;
     }
 
-    @Override
-    public int onStartCommand(final Intent intent, int flags, int startId) {
-        Log.i(null, "In onStartCommand");
-        int num_iter = intent.getIntExtra("iteraciones",0);
+    private class ServiceHandler extends Handler {
+        public ServiceHandler(Looper looper) {
+            super(looper);
+        }
 
-        for (int i =0 ; i < num_iter; i++) {
+        @Override
+        public void handleMessage(Message msg) {
+            Log.d(TAG, String.valueOf(msg.arg2));
             try {
                 Thread.sleep(3000);
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                Thread.currentThread().interrupt();
             }
             Intent broadcastIntent = new Intent();
             broadcastIntent.setAction(ACTION_ITERATION);
-            broadcastIntent.putExtra("iteracion", i);
+            broadcastIntent.putExtra("iteracion", msg.arg2);
             sendBroadcast(broadcastIntent);
+            stopSelf(msg.arg1);
         }
-        Intent broadcastIntent = new Intent();
-        broadcastIntent.setAction(ACTION_FIN_ITERATION);
-        sendBroadcast(broadcastIntent);
-        return START_REDELIVER_INTENT;
+    }
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        HandlerThread thread = new HandlerThread("ServiceStartArguments", android.os.Process.THREAD_PRIORITY_BACKGROUND);
+        thread.start();
+
+        mServiceLooper = thread.getLooper();
+        mServiceHandler = new ServiceHandler(mServiceLooper);
+    }
+
+    @Override
+    public int onStartCommand(final Intent intent, int flags, int startId) {
+        Toast.makeText(this, "Service starting", Toast.LENGTH_SHORT).show();
+        int iteration = intent.getIntExtra("iteracion", 0);
+        final Message msg = mServiceHandler.obtainMessage();
+        msg.arg1 = startId;
+        msg.arg2 = iteration;
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                mServiceHandler.sendMessage(msg);
+            }
+        }).start();
+        return START_STICKY;
     }
 }

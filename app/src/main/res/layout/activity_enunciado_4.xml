@@ -7,7 +7,7 @@
     <Button
         android:id="@+id/service"
         android:text="@string/service_name"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         ></Button>
     <TextView
@@ -19,7 +19,7 @@
     <Button
     android:id="@+id/intentservice"
     android:text="@string/IntentService_name"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     ></Button>
     <TextView
@@ -31,7 +31,7 @@
     <Button
         android:id="@+id/BoundService"
         android:text="@string/BoundService_name"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         ></Button>
     <TextView

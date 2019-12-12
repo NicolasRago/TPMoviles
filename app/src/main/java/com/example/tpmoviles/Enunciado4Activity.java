@@ -50,9 +50,7 @@ public class Enunciado4Activity extends AppCompatActivity implements View.OnClic
 
         mIntentFilter = new IntentFilter();
         mIntentFilter.addAction(BroadcastService.ACTION_ITERATION);
-        mIntentFilter.addAction(BroadcastService.ACTION_FIN_ITERATION);
         mIntentFilter.addAction(BroadcastIntentService.ACTION_ITERATION);
-        mIntentFilter.addAction(BroadcastIntentService.ACTION_FIN_ITERATION);
     }
 
     @Override
@@ -75,20 +73,24 @@ public class Enunciado4Activity extends AppCompatActivity implements View.OnClic
         switch (v.getId()){
             case R.id.service:
                 Log.d(null,"Button Service");
-                intent = new Intent(Enunciado4Activity.this,
-                        BroadcastService.class);
-                intent.putExtra("iteraciones", NUM_ITER);
-                startService(intent);
+                for (int i = 0; i < 4; i++) {
+                    intent = new Intent(Enunciado4Activity.this,
+                            BroadcastService.class);
+                    intent.putExtra("iteracion", i);
+                    startService(intent);
+                }
                 break;
             case R.id.intentservice:
                 Log.d(null,"Button intentservice");
-                intent = new Intent(Enunciado4Activity.this,
-                        BroadcastIntentService.class);
-                intent.putExtra("iteraciones", NUM_ITER);
-                startService(intent);
+                Toast.makeText(this, "IntentService starting", Toast.LENGTH_SHORT).show();
+                for (int i = 0; i < 4; i++) {
+                    intent = new Intent(Enunciado4Activity.this,
+                            BroadcastIntentService.class);
+                    intent.putExtra("iteracion", i);
+                    startService(intent);
+                }
                 break;
             case R.id.BoundService:
-                Log.d(null,"Button BoundService");
                 int num = mService.getRandomNumber();
                 numRandomTextView.setText(String.valueOf(num));
                 break;
@@ -100,23 +102,13 @@ public class Enunciado4Activity extends AppCompatActivity implements View.OnClic
     private BroadcastReceiver mReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            Log.d(null,"in BroadcastReceiver");
+            int iReceiver;
             if(intent.getAction().equals(BroadcastService.ACTION_ITERATION)) {
-                int iReceiver = intent.getIntExtra("iteracion",0);
+                iReceiver = intent.getIntExtra("iteracion",0);
                 iterationServiceTextView.setText(String.valueOf(iReceiver));
-            } else if(intent.getAction().equals(BroadcastService.ACTION_FIN_ITERATION)) {
-                Toast.makeText(Enunciado4Activity.this, "Tarea finalizada!", Toast.LENGTH_SHORT).show();
-                Intent stopIntent = new Intent(Enunciado4Activity.this,
-                        BroadcastService.class);
-                stopService(stopIntent);
-            } else if(intent.getAction().equals(BroadcastIntentService.ACTION_ITERATION)) {
-                int iReceiver = intent.getIntExtra("iteracion",0);
+            }else if(intent.getAction().equals(BroadcastIntentService.ACTION_ITERATION)) {
+                iReceiver = intent.getIntExtra("iteracion",0);
                 iterationIntentServiceTextView.setText(String.valueOf(iReceiver));
-            } else if(intent.getAction().equals(BroadcastService.ACTION_FIN_ITERATION)) {
-                Toast.makeText(Enunciado4Activity.this, "Tarea finalizada!", Toast.LENGTH_SHORT).show();
-                Intent stopIntent = new Intent(Enunciado4Activity.this,
-                        BroadcastIntentService.class);
-                stopService(stopIntent);
             }
         }
     };
